@@ -1,0 +1,30 @@
+{
+  "common": {
+    "appName": "Chameo",
+    "appSlogan": "English Learning Assistant",
+    "loading": "Loading..."
+  },
+  "popup": {
+    "openSidePanel": "Open Side Panel",
+    "settings": "Settings"
+  },
+  "sidepanel": {
+    "placeholder": "Select English text on a webpage to see definitions and grammar analysis here",
+    "wordbook": "View Wordbook"
+  },
+  "options": {
+    "title": "Chameo Settings",
+    "basic": "Basic Settings",
+    "enabled": "Enable Extension",
+    "enabledDesc": "Activate Chameo on all webpages",
+    "autoDetect": "Auto Detect Vocabulary",
+    "autoDetectDesc": "Automatically highlight unfamiliar words",
+    "highlightColor": "Highlight Color",
+    "highlightColorDesc": "Choose highlight color for vocabulary",
+    "about": "About",
+    "version": "Chameo v{{version}}",
+    "description": "English learning assistant - annotate vocabulary and grammar on any webpage",
+    "on": "On",
+    "off": "Off"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "common": {
+    "appName": "Chameo",
+    "appSlogan": "查咩 · 英语学习助手",
+    "loading": "加载中..."
+  },
+  "popup": {
+    "openSidePanel": "打开侧边栏",
+    "settings": "设置"
+  },
+  "sidepanel": {
+    "placeholder": "选中网页中的英文文本，即可在此查看释义和语法分析",
+    "wordbook": "查看生词本"
+  },
+  "options": {
+    "title": "Chameo 设置",
+    "basic": "基本设置",
+    "enabled": "启用插件",
+    "enabledDesc": "在所有网页上激活 Chameo",
+    "autoDetect": "自动检测生词",
+    "autoDetectDesc": "自动高亮可能不认识的单词",
+    "highlightColor": "高亮颜色",
+    "highlightColorDesc": "选择生词高亮颜色",
+    "about": "关于",
+    "version": "Chameo（查咩）v{{version}}",
+    "description": "网页英语学习助手，标注生词与语法结构",
+    "on": "已开启",
+    "off": "已关闭"
+  }
+}
