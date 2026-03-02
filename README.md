@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./public/icon/image.png" alt="Chameo" width="128" />
+</p>
+
 # Chameo（查咩）
 
 网页英语学习助手。
