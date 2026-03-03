@@ -1,25 +1,32 @@
 import { useState, useEffect } from 'react';
-import type { ExtensionStorageItem } from '@webext-core/storage';
+import type { WxtStorageItem } from '@wxt-dev/storage';
 
-export function useExtStorage<T>(storageItem: ExtensionStorageItem<T>) {
+export function useExtStorage<T>(item: WxtStorageItem<T, Record<string, unknown>>) {
   const [value, setValue] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    storageItem.getValue().then((v) => {
-      setValue(v);
-      setLoading(false);
-    });
+    item
+      .getValue()
+      .then((v) => {
+        setValue(v);
+      })
+      .catch((err) => {
+        console.warn('[Chameo] storage read failed:', err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
 
-    const unwatch = storageItem.watch((newValue) => {
+    const unwatch = item.watch((newValue) => {
       setValue(newValue);
     });
 
-    return unwatch;
-  }, [storageItem]);
+    return () => unwatch();
+  }, [item]);
 
   const update = async (newValue: T) => {
-    await storageItem.setValue(newValue);
+    await item.setValue(newValue);
   };
 
   return { value, loading, update } as const;

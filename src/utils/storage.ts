@@ -1,4 +1,5 @@
-import { localExtStorage } from '@webext-core/storage';
+import { storage } from '@wxt-dev/storage';
+import type { AiProviderConfig } from '@/types';
 
 export interface WordEntry {
   word: string;
@@ -12,18 +13,27 @@ export interface ChameoSettings {
   autoDetect: boolean;
 }
 
-const DEFAULT_SETTINGS: ChameoSettings = {
-  enabled: true,
-  highlightColor: '#fef08a',
-  autoDetect: true,
-};
-
-export const settingsStorage = localExtStorage.getItem<ChameoSettings>(
-  'chameo:settings',
-  { fallback: DEFAULT_SETTINGS },
+export const settingsStorage = storage.defineItem<ChameoSettings>(
+  'local:chameo:settings',
+  {
+    fallback: {
+      enabled: true,
+      highlightColor: '#fef08a',
+      autoDetect: true,
+    },
+  },
 );
 
-export const wordListStorage = localExtStorage.getItem<WordEntry[]>(
-  'chameo:words',
+export const wordListStorage = storage.defineItem<WordEntry[]>(
+  'local:chameo:words',
   { fallback: [] },
+);
+
+export const aiProvidersStorage = storage.defineItem<AiProviderConfig[]>(
+  'local:chameo:ai-providers',
+  { fallback: [] },
+);
+
+export const activeProviderIdStorage = storage.defineItem<string | null>(
+  'local:chameo:active-provider-id',
 );

@@ -2,11 +2,17 @@
   "common": {
     "appName": "Chameo",
     "appSlogan": "English Learning Assistant",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete"
   },
   "popup": {
     "openSidePanel": "Open Side Panel",
-    "settings": "Settings"
+    "settings": "Settings",
+    "selectProvider": "Select AI Provider",
+    "noProvider": "No AI provider configured. Go to Settings to add one."
   },
   "sidepanel": {
     "placeholder": "Select English text on a webpage to see definitions and grammar analysis here",
@@ -26,5 +32,20 @@
     "description": "English learning assistant - annotate vocabulary and grammar on any webpage",
     "on": "On",
     "off": "Off"
+  },
+  "aiProvider": {
+    "title": "AI Service",
+    "add": "Add",
+    "addNew": "Add AI Service",
+    "edit": "Edit AI Service",
+    "name": "Name",
+    "type": "Provider Type",
+    "model": "Model",
+    "selectModel": "Select Model",
+    "active": "Active",
+    "builtin": "Built-in",
+    "empty": "No AI service configured yet. Click \"Add\" to get started.",
+    "optional": "optional",
+    "ollamaKeyHint": "Not required for local Ollama"
   }
 }

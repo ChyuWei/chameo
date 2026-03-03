@@ -2,11 +2,17 @@
   "common": {
     "appName": "Chameo",
     "appSlogan": "查咩 · 英语学习助手",
-    "loading": "加载中..."
+    "loading": "加载中...",
+    "save": "保存",
+    "cancel": "取消",
+    "edit": "编辑",
+    "delete": "删除"
   },
   "popup": {
     "openSidePanel": "打开侧边栏",
-    "settings": "设置"
+    "settings": "设置",
+    "selectProvider": "选择 AI 服务",
+    "noProvider": "未配置 AI 服务，请前往设置添加"
   },
   "sidepanel": {
     "placeholder": "选中网页中的英文文本，即可在此查看释义和语法分析",
@@ -26,5 +32,20 @@
     "description": "网页英语学习助手，标注生词与语法结构",
     "on": "已开启",
     "off": "已关闭"
+  },
+  "aiProvider": {
+    "title": "AI 服务",
+    "add": "添加",
+    "addNew": "添加 AI 服务",
+    "edit": "编辑 AI 服务",
+    "name": "名称",
+    "type": "服务商类型",
+    "model": "模型",
+    "selectModel": "选择模型",
+    "active": "使用中",
+    "builtin": "内置",
+    "empty": "尚未添加 AI 服务，点击上方「添加」按钮开始配置",
+    "optional": "可选",
+    "ollamaKeyHint": "本地运行无需填写"
   }
 }

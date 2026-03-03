@@ -1,11 +1,21 @@
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { useExtStorage } from '@/hooks/useExtStorage';
-import { settingsStorage, type ChameoSettings } from '@/utils/storage';
+import { useAiProviders } from '@/hooks/useAiProviders';
+import { settingsStorage } from '@/utils/storage';
+import { AiProviderList } from '@/components/common/AiProviderList';
 
 function App() {
   const { t } = useTranslation();
   const { value: settings, loading, update } = useExtStorage(settingsStorage);
+  const {
+    providers,
+    activeId,
+    addProvider,
+    updateProvider,
+    removeProvider,
+    selectProvider,
+  } = useAiProviders();
 
   const toggleEnabled = () => {
     if (!settings) return;
@@ -36,6 +46,17 @@ function App() {
       </div>
 
       <div className="space-y-6">
+        <section>
+          <AiProviderList
+            providers={providers}
+            activeId={activeId}
+            onAdd={addProvider}
+            onUpdate={updateProvider}
+            onRemove={removeProvider}
+            onSelect={selectProvider}
+          />
+        </section>
+
         <section>
           <h2 className="mb-3 text-lg font-semibold">{t('options.basic')}</h2>
           <div className="space-y-4 rounded-lg border p-4">
