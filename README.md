@@ -138,4 +138,6 @@ function MyComponent() {
 
 ## License
 
-MIT
+本项目采用 [AGPL-3.0](LICENSE) 开源协议。
+
+商业用途需获取商业授权，请联系：[GitHub Issues](https://github.com/ChyuWei/chameo/issues)
