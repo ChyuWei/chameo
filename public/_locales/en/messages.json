@@ -4,5 +4,11 @@
   },
   "extensionDescription": {
     "message": "English learning assistant - annotate vocabulary and grammar on any webpage"
+  },
+  "contextMenuAnalyze": {
+    "message": "Sentence Analysis"
+  },
+  "contextMenuAnalyzeAndReview": {
+    "message": "Sentence Analysis & Add to Review"
   }
 }
