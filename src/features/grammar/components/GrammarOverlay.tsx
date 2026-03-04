@@ -1,52 +1,57 @@
-import type { GrammarAnalysis, GrammarRole } from '@/types';
+import type { AnalysisResult, SegmentType } from '@/types';
 
-const ROLE_COLORS: Record<GrammarRole, string> = {
-  subject: 'bg-blue-100 text-blue-800',
-  predicate: 'bg-red-100 text-red-800',
-  object: 'bg-green-100 text-green-800',
-  complement: 'bg-purple-100 text-purple-800',
-  adverbial: 'bg-yellow-100 text-yellow-800',
-  attributive: 'bg-pink-100 text-pink-800',
-  clause: 'bg-orange-100 text-orange-800',
-  conjunction: 'bg-gray-100 text-gray-800',
-  'preposition-phrase': 'bg-teal-100 text-teal-800',
-  other: 'bg-gray-50 text-gray-600',
+const SEGMENT_COLORS: Record<SegmentType, string> = {
+  'subject': 'bg-blue-100 text-blue-800',
+  'predicate': 'bg-red-100 text-red-800',
+  'object': 'bg-green-100 text-green-800',
+  'attributive-clause': 'bg-pink-100 text-pink-800',
+  'adverbial-clause': 'bg-yellow-100 text-yellow-800',
+  'appositive-clause': 'bg-orange-100 text-orange-800',
+  'parenthetical': 'bg-gray-100 text-gray-800',
+  'prepositional-phrase': 'bg-teal-100 text-teal-800',
+  'non-finite': 'bg-purple-100 text-purple-800',
+  'conjunction': 'bg-gray-100 text-gray-600',
 };
 
-const ROLE_LABELS: Record<GrammarRole, string> = {
-  subject: '主语',
-  predicate: '谓语',
-  object: '宾语',
-  complement: '补语',
-  adverbial: '状语',
-  attributive: '定语',
-  clause: '从句',
-  conjunction: '连词',
-  'preposition-phrase': '介词短语',
-  other: '其他',
+const SEGMENT_LABELS: Record<SegmentType, string> = {
+  'subject': '主语',
+  'predicate': '谓语',
+  'object': '宾语',
+  'attributive-clause': '定语从句',
+  'adverbial-clause': '状语从句',
+  'appositive-clause': '同位语从句',
+  'parenthetical': '插入语',
+  'prepositional-phrase': '介词短语',
+  'non-finite': '非谓语',
+  'conjunction': '连词',
 };
 
 interface GrammarOverlayProps {
-  analysis: GrammarAnalysis;
+  analysis: AnalysisResult;
 }
 
 export function GrammarOverlay({ analysis }: GrammarOverlayProps) {
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <div className="flex flex-wrap gap-1">
-        {analysis.nodes.map((node, i) => (
+        {analysis.segments.map((seg, i) => (
           <span
             key={i}
-            className={`inline-flex flex-col items-center rounded px-1.5 py-0.5 ${ROLE_COLORS[node.type]}`}
+            className={`inline-flex flex-col items-center rounded px-1.5 py-0.5 ${SEGMENT_COLORS[seg.type]}`}
+            title={seg.modifies ? `修饰: ${seg.modifies}` : undefined}
           >
-            <span className="text-sm">{node.text}</span>
-            <span className="text-[10px] opacity-70">{ROLE_LABELS[node.type]}</span>
+            <span className="text-sm">{seg.text}</span>
+            <span className="text-[10px] opacity-70">{SEGMENT_LABELS[seg.type]}</span>
           </span>
         ))}
       </div>
-      {analysis.explanation && (
-        <p className="text-sm text-muted-foreground">{analysis.explanation}</p>
-      )}
+
+      <div className="rounded-md border p-3 text-sm">
+        <p className="font-medium">主干还原</p>
+        <p className="mt-1 text-muted-foreground">{analysis.core.summary}</p>
+      </div>
+
+      <p className="text-sm text-muted-foreground">{analysis.translation}</p>
     </div>
   );
 }
