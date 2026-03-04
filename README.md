@@ -6,6 +6,8 @@
 
 网页英语学习助手。
 
+![长难句分析高亮效果](docs/images/highlight-demo.png)
+
 ## 快速开始
 
 ```bash
