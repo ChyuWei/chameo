@@ -12,7 +12,9 @@
     "openSidePanel": "Open Side Panel",
     "settings": "Settings",
     "selectProvider": "Select AI Provider",
-    "noProvider": "No AI provider configured. Go to Settings to add one."
+    "noProvider": "No AI provider configured. Go to Settings to add one.",
+    "notConfigured": "Key not configured",
+    "activeNotReady": "Selected provider has no API Key. Go to Settings to configure."
   },
   "sidepanel": {
     "placeholder": "Select English text on a webpage to see definitions and grammar analysis here",
@@ -31,7 +33,9 @@
     "version": "Chameo v{{version}}",
     "description": "English learning assistant - annotate vocabulary and grammar on any webpage",
     "on": "On",
-    "off": "Off"
+    "off": "Off",
+    "addToReview": "Add to review on context menu analyze",
+    "addToReviewDesc": "When analyzing via right-click, also add the sentence to the review book"
   },
   "aiProvider": {
     "title": "AI Service",
@@ -46,6 +50,8 @@
     "builtin": "Built-in",
     "empty": "No AI service configured yet. Click \"Add\" to get started.",
     "optional": "optional",
-    "ollamaKeyHint": "Not required for local Ollama"
+    "ollamaKeyHint": "Not required for local Ollama",
+    "needsKey": "API Key required to use this provider",
+    "configure": "Configure"
   }
 }

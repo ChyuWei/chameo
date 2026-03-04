@@ -12,7 +12,11 @@
     "openSidePanel": "打开侧边栏",
     "settings": "设置",
     "selectProvider": "选择 AI 服务",
-    "noProvider": "未配置 AI 服务，请前往设置添加"
+    "goToSettings": "去设置中配置",
+    "noProvider": "未配置 AI 服务，请前往设置添加",
+    "notConfigured": "未配置 Key",
+    "activeNotReady": "当前选中的服务商未配置 API Key，请前往设置配置",
+    "manageRecords": "分析记录"
   },
   "sidepanel": {
     "placeholder": "选中网页中的英文文本，即可在此查看释义和语法分析",
@@ -31,7 +35,30 @@
     "version": "Chameo（查咩）v{{version}}",
     "description": "网页英语学习助手，标注生词与语法结构",
     "on": "已开启",
-    "off": "已关闭"
+    "off": "已关闭",
+    "addToReview": "右键解析时加入复习本",
+    "addToReviewDesc": "通过右键菜单分析长难句时，同时将句子加入复习本",
+    "persistAnalysis": "持久化分析结果",
+    "persistAnalysisDesc": "保存长难句分析结果，再次访问同一网页时自动恢复高亮",
+    "crossSiteHighlight": "跨网页高亮",
+    "crossSiteHighlightDesc": "在其他网页中遇到已分析过的相同句子时，也自动高亮",
+    "segmentColors": "成分标注颜色",
+    "segmentColorsDesc": "自定义长难句各成分类型的高亮颜色",
+    "resetColors": "恢复默认",
+    "manageRecords": "管理分析记录"
+  },
+  "manage": {
+    "title": "分析记录管理",
+    "empty": "暂无分析记录",
+    "totalPages": "共 {{count}} 个页面",
+    "totalEntries": "{{count}} 条记录",
+    "clearAll": "清空全部",
+    "clearAllConfirm": "确定清空所有分析记录？此操作不可恢复。",
+    "clearPage": "清空此页面",
+    "deleteSentence": "删除",
+    "core": "主干",
+    "translation": "翻译",
+    "savedAt": "保存于"
   },
   "aiProvider": {
     "title": "AI 服务",
@@ -46,6 +73,8 @@
     "builtin": "内置",
     "empty": "尚未添加 AI 服务，点击上方「添加」按钮开始配置",
     "optional": "可选",
-    "ollamaKeyHint": "本地运行无需填写"
+    "ollamaKeyHint": "本地运行无需填写",
+    "needsKey": "需要配置 API Key 才能使用",
+    "configure": "配置"
   }
 }

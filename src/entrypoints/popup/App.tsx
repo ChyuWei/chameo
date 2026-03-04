@@ -14,6 +14,7 @@ import { AI_PROVIDER_LABELS } from '@/types';
 function App() {
   const { t } = useTranslation();
   const { providers, activeId, activeProvider, selectProvider } = useAiProviders();
+  const hasReadyProvider = providers.some((p) => !!p.apiKey);
 
   const handleOpenSidePanel = () => {
     sendMessage('open-side-panel', undefined);
@@ -34,34 +35,54 @@ function App() {
       </div>
 
       <div className="space-y-2">
-        {providers.length > 0 ? (
-          <Select value={activeId ?? ''} onValueChange={selectProvider}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder={t('popup.selectProvider')} />
-            </SelectTrigger>
-            <SelectContent>
-              {providers.map((p) => (
-                <SelectItem key={p.id} value={p.id}>
-                  <span>{p.name}</span>
-                  <span className="ml-1.5 text-xs text-muted-foreground">
-                    {AI_PROVIDER_LABELS[p.provider]} · {p.model}
-                  </span>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        {hasReadyProvider ? (
+          <>
+            <Select value={activeId ?? ''} onValueChange={selectProvider}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder={t('popup.selectProvider')} />
+              </SelectTrigger>
+              <SelectContent>
+                {providers.map((p) => {
+                  const ready = !!p.apiKey;
+                  return (
+                    <SelectItem key={p.id} value={p.id} disabled={!ready}>
+                      <span className={ready ? '' : 'text-muted-foreground'}>{p.name}</span>
+                      <span className="ml-1.5 text-xs text-muted-foreground">
+                        {ready ? `${AI_PROVIDER_LABELS[p.provider]} · ${p.model}` : t('popup.notConfigured')}
+                      </span>
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
+            {activeProvider && !activeProvider.apiKey && (
+              <p className="text-xs text-destructive">{t('popup.activeNotReady')}</p>
+            )}
+          </>
         ) : (
-          <p className="rounded-md border border-dashed px-3 py-2 text-center text-xs text-muted-foreground">
-            {t('popup.noProvider')}
-          </p>
+          <button
+            onClick={handleOpenOptions}
+            className="w-full rounded-md border border-dashed px-3 py-2 text-center text-xs text-muted-foreground hover:border-primary hover:text-primary transition-colors cursor-pointer"
+          >
+            {t('popup.goToSettings')}
+          </button>
         )}
 
         <Button className="w-full" onClick={handleOpenSidePanel}>
           {t('popup.openSidePanel')}
         </Button>
-        <Button variant="outline" className="w-full" onClick={handleOpenOptions}>
-          {t('popup.settings')}
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            className="flex-1"
+            onClick={() => browser.tabs.create({ url: browser.runtime.getURL('/manage.html') })}
+          >
+            {t('popup.manageRecords')}
+          </Button>
+          <Button variant="outline" className="flex-1" onClick={handleOpenOptions}>
+            {t('popup.settings')}
+          </Button>
+        </div>
       </div>
     </div>
   );
