@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useExtStorage } from './useExtStorage';
 import { aiProvidersStorage, activeProviderIdStorage } from '@/utils/storage';
 import type { AiProviderConfig, AiConfig } from '@/types';
@@ -10,6 +10,16 @@ export function useAiProviders() {
     useExtStorage(activeProviderIdStorage);
 
   const activeProvider = providers?.find((p) => p.id === activeId) ?? null;
+
+  useEffect(() => {
+    if (loading || !providers) return;
+    const hasValidSelection = activeId && providers.some((p) => p.id === activeId);
+    if (hasValidSelection) return;
+    const firstReady = providers.find((p) => !!p.apiKey);
+    if (firstReady) {
+      setActiveId(firstReady.id);
+    }
+  }, [loading, providers, activeId, setActiveId]);
 
   const activeConfig: AiConfig | null = activeProvider
     ? {

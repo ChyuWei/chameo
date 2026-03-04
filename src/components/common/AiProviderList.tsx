@@ -120,32 +120,35 @@ export function AiProviderList({
                     {p.model}
                     {p.baseUrl && ` · ${p.baseUrl}`}
                   </CardDescription>
+                  {p.isBuiltin && !p.apiKey && (
+                    <p className="mt-1 text-xs text-destructive">
+                      {t('aiProvider.needsKey')}
+                    </p>
+                  )}
                 </div>
                 <div className="ml-3 flex shrink-0 gap-1">
+                  <Button
+                    variant="ghost"
+                    size="xs"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setEditingId(p.id);
+                      setShowForm(false);
+                    }}
+                  >
+                    {p.isBuiltin && !p.apiKey ? t('aiProvider.configure') : t('common.edit')}
+                  </Button>
                   {!p.isBuiltin && (
-                    <>
-                      <Button
-                        variant="ghost"
-                        size="xs"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setEditingId(p.id);
-                          setShowForm(false);
-                        }}
-                      >
-                        {t('common.edit')}
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="xs"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onRemove(p.id);
-                        }}
-                      >
-                        {t('common.delete')}
-                      </Button>
-                    </>
+                    <Button
+                      variant="ghost"
+                      size="xs"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onRemove(p.id);
+                      }}
+                    >
+                      {t('common.delete')}
+                    </Button>
                   )}
                 </div>
               </CardContent>

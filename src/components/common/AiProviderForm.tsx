@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -35,6 +36,7 @@ export function AiProviderForm({ initial, onSubmit, onCancel }: AiProviderFormPr
   const [apiKey, setApiKey] = useState(initial?.apiKey ?? '');
   const [model, setModel] = useState(initial?.model ?? '');
   const [baseUrl, setBaseUrl] = useState(initial?.baseUrl ?? '');
+  const [showApiKey, setShowApiKey] = useState(false);
 
   const presetModels = AI_PROVIDER_MODELS[provider];
   const needsBaseUrl = provider === 'openai-compatible' || provider === 'anthropic-compatible' || provider === 'ollama';
@@ -93,12 +95,23 @@ export function AiProviderForm({ initial, onSubmit, onCancel }: AiProviderFormPr
 
       <div className="space-y-2">
         <Label>API Key{isApiKeyOptional && <span className="ml-1 text-xs text-muted-foreground">({t('aiProvider.optional')})</span>}</Label>
-        <Input
-          type="password"
-          value={apiKey}
-          onChange={(e) => setApiKey(e.target.value)}
-          placeholder={isApiKeyOptional ? t('aiProvider.ollamaKeyHint') : 'sk-...'}
-        />
+        <div className="relative">
+          <Input
+            type={showApiKey ? 'text' : 'password'}
+            value={apiKey}
+            onChange={(e) => setApiKey(e.target.value)}
+            placeholder={isApiKeyOptional ? t('aiProvider.ollamaKeyHint') : 'sk-...'}
+            className="pr-9"
+          />
+          <button
+            type="button"
+            onClick={() => setShowApiKey((v) => !v)}
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            tabIndex={-1}
+          >
+            {showApiKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+          </button>
+        </div>
       </div>
 
       <div className="space-y-2">
